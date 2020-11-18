@@ -13,6 +13,10 @@ module.exports = {
       "jsx": true
     }
   },
+  "env": {
+    "browser": true,
+    "node": true,
+  },
   "settings": {
     "react": {
       "version": "detect"
@@ -23,7 +27,10 @@ module.exports = {
     "@typescript-eslint"
   ],
   "rules": {
-    "no-unused-vars": ['warn'], // instead of default error
+    // https://github.com/typescript-eslint/typescript-eslint/issues/363
+    "@typescript-eslint/no-unused-vars": "off",
+    "no-unused-vars": "off",
+    'no-debugger': 'warn', // instead of default error
     'indent': ['warn', 2] // instead of default 4
   }
 };

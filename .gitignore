@@ -117,7 +117,7 @@ Sessionx.vim
 # Temporary
 .netrwhist
 # Auto-generated tag files
-tags
+tags*
 # Persistent undo
 [._]*.un~
 
@@ -251,3 +251,5 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/vim,code,react,linux,macos,angular,windows,webstorm,atom
+
+.eslintcache
