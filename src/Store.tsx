@@ -1,4 +1,4 @@
-import React, {createContext, Dispatch, useContext, useReducer} from 'react'
+import React, {createContext, Dispatch, ReactElement, useContext, useReducer} from 'react'
 import Book from './types/Book'
 
 export interface Store {
@@ -48,8 +48,8 @@ const StoreContext = createContext({} as StoreContext);
 
 export const useStore = (): StoreContext => useContext(StoreContext);
 
-export default function StoreProvider(props: {children: JSX.Element}): JSX.Element {
-  const [store, dispatch] = useReducer(reducer, {cart: []});
+export default function StoreProvider(props: {children: ReactElement, store?: Store}): ReactElement {
+  const [store, dispatch] = useReducer(reducer, props.store || {cart: []});
 
   return (
     <StoreContext.Provider value={{store, dispatch}}>

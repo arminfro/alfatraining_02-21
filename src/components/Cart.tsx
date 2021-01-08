@@ -24,13 +24,13 @@ export default function Cart(): JSX.Element {
 
   return (
     <>
-      <h1>Shopping Cart</h1>
+      <h2>Shopping Cart</h2>
       <div className="ui middle aligned selection divided list">
         {books.map(book =>
           <BookListItem key={book.isbn} book={book}>
             <div className="right floated content">
               <div className="ui buttons">
-                <button className="ui button"><i className="shopping cart icon" />{countBook(book)}</button>
+                <label data-testid="count-target" className="ui button"><i className="shopping cart icon" />{countBook(book)}</label>
                 <button className="ui button green" onClick={(e) => onChangeCount(e, {type: 'addToCart', book})}>Add One</button>
                 <button className="ui button red" onClick={(e) => onChangeCount(e, {type: 'removeFromCart', book})}>Remove One</button>
               </div>
