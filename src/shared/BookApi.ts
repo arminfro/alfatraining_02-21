@@ -1,6 +1,8 @@
 import {useState, useEffect} from 'react';
 import axios, {AxiosResponse, Method} from 'axios';
 
+import {isBookRaw, isBookRawArray, factoryRawToBook} from '../types/Book'
+
 type Setter<T> = (data: T) => void
 
 /*
@@ -52,3 +54,20 @@ export function bookApi<T>(method: Method, path: string, callback: Setter<T>, da
   })
     .then((response: AxiosResponse<T>) => callback(response.data))
 }
+
+
+/*
+* Axios Interceptor
+* Factory BookRaw to Book
+*/
+axios.interceptors.response.use(
+  (response: AxiosResponse) => {
+    if (isBookRaw(response.data)) {
+      response.data = factoryRawToBook(response.data)
+    } else if (isBookRawArray(response.data)) {
+      response.data = response.data.map(book => factoryRawToBook(book))
+    }
+    return response;
+  },
+  error => Promise.reject(error)
+);
