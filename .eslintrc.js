@@ -24,6 +24,7 @@ module.exports = {
   ],
   "rules": {
     "no-unused-vars": ['warn'], // instead of default error
-    'indent': ['warn', 2] // instead of default 4
+    'indent': ['warn', 2], // instead of default 4
+    "@typescript-eslint/ban-ts-comment": "off"
   }
 };

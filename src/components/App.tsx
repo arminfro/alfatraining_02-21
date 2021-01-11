@@ -1,9 +1,13 @@
 import React, {ReactElement} from 'react';
 
+import ClassCounter from './ClassCounter';
+import ProjectList from './ProjectList'
+
 export default function App(): ReactElement {
   return (
-    <div className="ui active inverted dimmer">
-      <div className="ui text loader large">Lade BookShelf ...</div>
+    <div className="ui container">
+      <ClassCounter />
+      <ProjectList />
     </div>
   );
 }
