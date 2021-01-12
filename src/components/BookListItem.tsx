@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 
 interface Props {
   book: Book
+  children?: ReactElement
 }
 
 export default function BookListItem(props: Props): ReactElement {
@@ -30,6 +31,7 @@ export default function BookListItem(props: Props): ReactElement {
           ISBN {book.isbn}
         </div>
       </div>
+      {props.children}
     </Link>
   )
 }
