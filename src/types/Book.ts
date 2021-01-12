@@ -2,7 +2,7 @@ export default interface Book extends BookBase {
   published: Date;
 }
 
-interface BookRaw extends BookBase {
+export interface BookRaw extends BookBase {
   published: string;
 }
 

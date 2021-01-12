@@ -3,17 +3,22 @@ import {useHistory} from 'react-router-dom'
 import css from './BookForm.module.css'
 
 import {bookApi} from '../shared/BookApi'
+import {BookRaw} from '../types/Book'
 
-export default function BookForm(): JSX.Element {
+interface Props extends BookRaw {
+  isEdit: boolean
+}
+
+export default function BookForm(props: Props): JSX.Element {
   const buildThumbnail = (title: string, url: string) => ({title, url})
 
-  const [title, setTitle] = useState('Mein neues Buch')
-  const [subtitle, setSubtitle] = useState('sub sub')
-  const [isbn, setIsbn] = useState(Math.floor(Math.random() * 99999999999 + 111111111).toString())
-  const [description, setDescription] = useState('desc')
-  const [authors, setAuthors] = useState(['Max', 'Mux'])
-  const [thumbnails, setThumbnails] = useState([buildThumbnail('title', 'https://ng-buch.de/public/monkey-thinking.svg')])
-  const [published, setPublished] = useState("2020-05-21")
+  const [title, setTitle] = useState(props.title)
+  const [subtitle, setSubtitle] = useState(props.subtitle)
+  const [isbn, setIsbn] = useState(props.isbn)
+  const [description, setDescription] = useState(props.description)
+  const [authors, setAuthors] = useState(props.authors)
+  const [thumbnails, setThumbnails] = useState(props.thumbnails || [])
+  const [published, setPublished] = useState(props.published)
 
   const history = useHistory()
 
@@ -21,7 +26,12 @@ export default function BookForm(): JSX.Element {
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault() // stops default reloading behaviour
-    bookApi('post', 'books', () => history.push('/books'), book())
+    bookApi(
+      props.isEdit ? 'put' : 'post',
+      props.isEdit ? `books/${props.isbn}` : 'books',
+      () => history.push(props.isEdit ? `/books/${props.isbn}` : '/books'),
+      book()
+    )
   }
 
   const onChangeAuthor = (value: string, index: number) => {
@@ -81,6 +91,7 @@ export default function BookForm(): JSX.Element {
       <label>Isbn</label>
       <input
         placeholder="Isbn"
+        readOnly={props.isEdit}
         required
         pattern="\d{9}|\d{11}"
         title="Isbn Nummer muss zwischen 9 und 11 Zeichen lang sein"

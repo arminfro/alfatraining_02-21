@@ -3,7 +3,7 @@ import React, {Fragment, ReactElement} from 'react';
 import Book from '../types/Book'
 import LoadingSpinner from './shared/LoadingSpinner'
 import {useBookApi, bookApi} from '../shared/BookApi'
-import {useHistory, useParams} from 'react-router-dom';
+import {Link, useHistory, useParams} from 'react-router-dom';
 
 export default function BookDetails(): ReactElement {
   const {isbn} = useParams<{isbn: string}>()
@@ -67,6 +67,7 @@ export default function BookDetails(): ReactElement {
       </div>
       <button onClick={onGoToList} className="ui button">Back</button>
       <button onClick={onDelete} className="ui red button">Delete</button>
+      <Link to={`/books/edit/${book.isbn}`} className="ui yellow button">Edit</Link>
     </>
   )
 }
