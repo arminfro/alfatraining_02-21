@@ -1,4 +1,4 @@
-import {Dispatch as ReactDispatch} from 'react'
+import React, {createContext, Dispatch, useContext, useReducer} from 'react'
 import Book from './types/Book'
 
 export interface Store {
@@ -16,8 +16,6 @@ interface RemoveFromCart {
 }
 
 export type Actions = AddToCart | RemoveFromCart
-
-export type Dispatch = ReactDispatch<Actions>
 
 export const reducer = (state: Store, action: Actions): Store => {
   switch (action.type) {
@@ -40,3 +38,22 @@ export const reducer = (state: Store, action: Actions): Store => {
   }
   }
 };
+
+interface StoreContext {
+  store: Store;
+  dispatch: Dispatch<Actions>;
+}
+
+const StoreContext = createContext({} as StoreContext);
+
+export const useStore = (): StoreContext => useContext(StoreContext);
+
+export default function StoreProvider(props: {children: JSX.Element}): JSX.Element {
+  const [store, dispatch] = useReducer(reducer, {cart: []});
+
+  return (
+    <StoreContext.Provider value={{store, dispatch}}>
+      {props.children}
+    </StoreContext.Provider>
+  );
+}

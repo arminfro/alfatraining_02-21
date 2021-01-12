@@ -1,4 +1,5 @@
 import React, {ReactElement} from 'react';
+import StoreProvider from '../Store';
 
 import Layout from './Layout';
 import Routes from './Routes';
@@ -6,8 +7,10 @@ import Routes from './Routes';
 export default function App(): ReactElement {
 
   return (
-    <Layout>
-      <Routes />
-    </Layout>
+    <StoreProvider>
+      <Layout>
+        <Routes />
+      </Layout>
+    </StoreProvider>
   )
 }
