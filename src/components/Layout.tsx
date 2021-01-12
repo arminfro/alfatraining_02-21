@@ -8,7 +8,8 @@ export default function Layout(props: Props): ReactElement {
     <Router>
       <div className="ui menu">
         <NavLink to="/home" className="item">Home</NavLink>
-        <NavLink to="/books" className="item">Books</NavLink>
+        <NavLink exact to="/books" className="item">Books</NavLink>
+        <NavLink to="/books/create" className="item">new Book</NavLink>
       </div>
 
       <div className="ui container">
