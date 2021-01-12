@@ -1,4 +1,5 @@
-import React, {Fragment, ReactElement} from 'react';
+import React, {Fragment, ReactElement, useEffect, useState} from 'react';
+import axios, {AxiosResponse} from 'axios';
 
 import Project from '../types/Project'
 import ProjectProgress from './ProjectProgress';
@@ -10,7 +11,17 @@ interface Props {
 }
 
 export default function ProjectDetails(props: Props): ReactElement {
-  const project = props.project;
+  const [project, setProject] = useState<Project>()
+
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: `http://localhost:3001/projects/${props.project.id}`
+    })
+      .then((response: AxiosResponse<Project>) => setProject(response.data))
+  }, [props.project.id])
+
+  if (!project) {return <p>Lade</p>}
 
   return (
     <>

@@ -1,6 +1,7 @@
 import React, {ReactElement, useState} from 'react';
 
 import ClassCounter from './ClassCounter';
+import FunctionalCounter from './FunctionalCounter';
 import ProjectList from './ProjectList'
 import ProjectDetails from './ProjectDetails'
 
@@ -11,6 +12,8 @@ type ViewState = 'list' | 'details'
 export default function App(): ReactElement {
   const [viewState, setViewState] = useState<ViewState>('list');
   const [project, setProject] = useState<Project>();
+
+  const [showCounter, setShowCoutner] = useState(true)
 
   const showList = () => {
     setViewState('list')
@@ -24,6 +27,7 @@ export default function App(): ReactElement {
 
   return (
     <div className="ui container">
+      { showCounter && <FunctionalCounter />}
       <ClassCounter />
       {
         viewState === 'details' && project

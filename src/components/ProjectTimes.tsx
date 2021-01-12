@@ -20,9 +20,9 @@ export default function ProjectTimes(props: Props): ReactElement {
                 {title}
               </span>
             }
-            <Time value={begin} format="DD/MM HH:mm" />
+            <Time value={new Date(begin)} format="DD/MM HH:mm" />
             ...
-            <Time value={end} format="DD/MM HH:mm" />
+            <Time value={new Date(end)} format="DD/MM HH:mm" />
           </div>
         </div>
       )}

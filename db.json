@@ -2,6 +2,7 @@
   "projects": [
     {
       "id": 1,
+      "img": "https://tse3.mm.bing.net/th?id=OIP.Uy0JQ5fJ8Y7UDMl_M5C7PwAAAA&pid=Api",
       "title": "Write Article",
       "status": "is-completed",
       "progress": 100,
@@ -30,24 +31,7 @@
     },
     {
       "id": 2,
-      "title": "Team Meeting",
-      "status": "on-going",
-      "progress": 15,
-      "times": [
-        {
-          "title": "Talk strategy",
-          "begin": "Mon Jan 04 2021 13:06:49 GMT+0100 (Central European Standard Time)",
-          "end": "Mon Jan 04 2021 15:10:49 GMT+0100 (Central European Standard Time)"
-        },
-        {
-          "title": "Daily activity",
-          "begin": "Tue Jan 05 2021 01:06:49 GMT+0100 (Central European Standard Time)",
-          "end": "Tue Jan 05 2021 02:26:04 GMT+0100 (Central European Standard Time)"
-        }
-      ]
-    },
-    {
-      "id": 3,
+      "img": "https://cdn.xl.thumbs.canstockphoto.com/school-timetable-template-for-students-and-pupils-abstract-scribble-background-colorful-design-clipart-vector_csp40536050.jpg",
       "title": "Prepare timetable",
       "status": "in-progress",
       "progress": 60,
@@ -65,6 +49,25 @@
           "title": "Calibrate events",
           "begin": "Mon Jan 04 2021 14:12:40 GMT+0100 (Central European Standard Time)",
           "end": "Mon Jan 04 2021 10:15:40 GMT+0100 (Central European Standard Time)"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "img": "http://sr.photos2.fotosearch.com/bthumb/CLT/CLT006/ko714.jpg",
+      "title": "Team Meeting",
+      "status": "on-hold",
+      "progress": 15,
+      "times": [
+        {
+          "title": "Talk strategy",
+          "begin": "Mon Jan 04 2021 13:06:49 GMT+0100 (Central European Standard Time)",
+          "end": "Mon Jan 04 2021 15:10:49 GMT+0100 (Central European Standard Time)"
+        },
+        {
+          "title": "Daily activity",
+          "begin": "Tue Jan 05 2021 01:06:49 GMT+0100 (Central European Standard Time)",
+          "end": "Tue Jan 05 2021 02:26:04 GMT+0100 (Central European Standard Time)"
         }
       ]
     }
