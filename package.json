@@ -16,6 +16,6 @@
   },
   "scripts": {
     "start": "ts-node ./src/classes/main.ts",
-    "debug": "node --inspect-brk --require ts-node/register src/main.ts"
+    "debug": "node --inspect-brk --require ts-node/register ./src/classes/main.ts"
   }
 }
