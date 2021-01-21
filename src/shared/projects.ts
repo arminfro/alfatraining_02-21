@@ -38,7 +38,6 @@ export const projects: Project[] = [
     "progress": 60,
     "times": [
       {
-        "title": "Defining primitives",
         "begin": new Date("Fri Jan 01 2021 13:08:59 GMT+0100 (Central European Standard Time)"),
         "end": new Date("Sat Jan 02 2021 06:40:05 GMT+0100 (Central European Standard Time)")
       },

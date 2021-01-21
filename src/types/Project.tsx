@@ -8,7 +8,7 @@ export default interface Project {
 }
 
 interface Time {
-    title: string;
+    title?: string;
     begin: Date;
     end: Date;
 }

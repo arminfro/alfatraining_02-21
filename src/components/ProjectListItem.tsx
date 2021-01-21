@@ -1,23 +1,19 @@
 import React, {ReactElement} from 'react'
-import Time from 'react-time'
 
 import Project from '../types/Project'
+import ProjectProgress from './ProjectProgress'
+import ProjectTimes from './ProjectTimes'
 
 interface Props {
   project: Project
+  showDetails: (project: Project) => void
 }
 
 export default function ProjectListItem(props: Props): ReactElement {
   const project = props.project
 
-  const progressBarClassMap: {[key: string]: string} = {
-    'is-completed': 'success',
-    'in-progress': 'warning',
-    'on-hold': 'error'
-  }
-
   return (
-    <div className="card">
+    <div className="card" onClick={() => props.showDetails(project)}>
       <div className="item" style={{margin: 15}}>
         <h2 className="ui image header">
           <div className="content">
@@ -34,11 +30,7 @@ export default function ProjectListItem(props: Props): ReactElement {
                   </h4>
                 </td>
                 <td>
-                  <div className={`ui progress ${progressBarClassMap[project.status]}`}>
-                    <div className="bar" style={{width: `${project.progress}%`}}>
-                      <div className="progress">{project.progress}%</div>
-                    </div>
-                  </div>
+                  <ProjectProgress project={project} />
                 </td>
               </tr>
               <tr>
@@ -58,20 +50,7 @@ export default function ProjectListItem(props: Props): ReactElement {
                   </h4>
                 </td>
                 <td>
-                  <div className="ui relaxed divided list metadata">
-                    {project.times.map(({begin, end, title}) =>
-                      <div key={begin.toString()} className="item">
-                        <div className="content">
-                          <span className="header">
-                            {title}
-                          </span>
-                          <Time value={begin} format="DD/MM HH:mm" />
-                          ...
-                          <Time value={end} format="DD/MM HH:mm" />
-                        </div>
-                      </div>
-                    )}
-                  </div>
+                  <ProjectTimes project={project} />
                 </td>
               </tr>
               <tr>
