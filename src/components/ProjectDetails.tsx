@@ -4,7 +4,6 @@ import axios, {AxiosResponse} from 'axios';
 import Project from '../types/Project'
 import ProjectProgress from './ProjectProgress';
 import ProjectTimes from './ProjectTimes';
-import LoadingSpinner from './shared/LoadingSpinner';
 
 interface Props {
   project: Project
@@ -22,7 +21,7 @@ export default function ProjectDetails(props: Props): ReactElement {
       .then((response: AxiosResponse<Project>) => setProject(response.data))
   }, [props.project.id])
 
-  if (!project) {return <LoadingSpinner name={`Project ${props.project.id}`} />}
+  if (!project) {return <p>Lade</p>}
 
   return (
     <>

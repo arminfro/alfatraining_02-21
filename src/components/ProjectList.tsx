@@ -3,7 +3,6 @@ import React, {ReactElement, useEffect, useState} from 'react';
 
 import Project from '../types/Project';
 import ProjectListItem from './ProjectListItem'
-import LoadingSpinner from './shared/LoadingSpinner';
 
 interface Props {
   showDetails: (project: Project) => void
@@ -26,6 +25,6 @@ export default function ProjectList(props: Props): ReactElement {
         {projects.map(project => <ProjectListItem key={project.id} project={project} showDetails={props.showDetails} />)}
       </div>
     ) : (
-      <LoadingSpinner name="Projects" />
+      <p>Lade</p>
     )
 }
