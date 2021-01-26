@@ -1,32 +1,19 @@
-import React, {useState, useEffect, ReactElement} from "react"
+import React, {ReactElement} from "react"
+
+import useCounter from './hooks/useCoutner'
+import useInterval from './hooks/useInterval'
+import useDocumentTitle from './hooks/useDocumentTitle'
 
 interface Props {
   startValue?: 0
 }
 
 export default function FunctionalCounter(props: Props): ReactElement {
-  const [counter, setCounter] = useState(props.startValue || 0)
+  const [counter, onIncrementCounter] = useCounter(props.startValue)
+  useInterval(onIncrementCounter)
+  useDocumentTitle(`Counter ${counter}`)
 
-  useEffect(() => {
-    const intervalId = window.setInterval(onIncrementCounter, 1000)
-    return () => {
-      window.clearInterval(intervalId)
-    }
-  }, [])
-
-  useEffect(() => {
-    const defaultTitle = document.title
-    document.title = `Counter ${counter}`
-    return () => {
-      document.title = defaultTitle
-    }
-  }, [counter])
-
-  const onIncrementCounter = () => {
-    setCounter(currentCounter => currentCounter + 1)
-  }
-
-  return(
+  return (
     <div>
       <p>Counter: {counter}</p>
       <button onClick={onIncrementCounter} className="ui button">+</button>
