@@ -1,39 +1,14 @@
-import React, {ReactElement, useState} from 'react';
-
-import ClassCounter from './ClassCounter';
-import FunctionalCounter from './FunctionalCounter';
-import ProjectList from './ProjectList'
-import ProjectDetails from './ProjectDetails'
-
-import Project from '../types/Project'
-
-type ViewState = 'list' | 'details'
+import React, {ReactElement} from 'react';
+import {BrowserRouter} from "react-router-dom";
+import Layout from './Layout';
+import Routing from './Routing'
 
 export default function App(): ReactElement {
-  const [viewState, setViewState] = useState<ViewState>('list');
-  const [project, setProject] = useState<Project>();
-
-  const [showCounter, setShowCoutner] = useState(true)
-
-  const showList = () => {
-    setViewState('list')
-    setProject(undefined)
-  };
-
-  const showDetails = (project_: Project) => {
-    setProject(project_)
-    setViewState('details')
-  };
-
   return (
-    <div className="ui container">
-      { showCounter && <FunctionalCounter />}
-      <ClassCounter />
-      {
-        viewState === 'details' && project
-          ? <ProjectDetails showList={showList} project={project} />
-          : <ProjectList showDetails={showDetails} />
-      }
-    </div>
+    <BrowserRouter>
+      <Layout>
+        <Routing />
+      </Layout>
+    </BrowserRouter>
   )
 }

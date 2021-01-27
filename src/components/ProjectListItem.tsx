@@ -1,4 +1,5 @@
 import React, {ReactElement} from 'react'
+import {useHistory} from "react-router-dom";
 
 import Project from '../types/Project'
 import ProjectProgress from './ProjectProgress'
@@ -6,14 +7,14 @@ import ProjectTimes from './ProjectTimes'
 
 interface Props {
   project: Project
-  showDetails: (project: Project) => void
 }
 
 export default function ProjectListItem(props: Props): ReactElement {
   const project = props.project
+  const history = useHistory()
 
   return (
-    <div className="card" onClick={() => props.showDetails(project)}>
+    <div className="card" onClick={() => history.push(`/projects/${project.id}`)}>
       <div className="item" style={{margin: 15}}>
         <h2 className="ui image header">
           <div className="content">

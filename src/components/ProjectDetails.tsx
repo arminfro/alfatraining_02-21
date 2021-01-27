@@ -1,16 +1,13 @@
 import React, {ReactElement} from 'react';
+import {Link, useParams} from 'react-router-dom'
 import {useProjectApi} from '../shared/ProjectApi';
 import Project from '../types/Project';
 import ProjectProgress from './ProjectProgress';
 import ProjectTimes from './ProjectTimes';
 
-interface Props {
-  project: Project
-  showList: () => void
-}
-
-export default function ProjectDetails(props: Props): ReactElement {
-  const [project] = useProjectApi<Project>('get', `projects/${props.project.id}`)
+export default function ProjectDetails(): ReactElement {
+  const {id} = useParams<{id: string}>()
+  const [project] = useProjectApi<Project>('get', `projects/${id}`)
 
   if (!project) {return <p>Lade</p>}
 
@@ -51,7 +48,7 @@ export default function ProjectDetails(props: Props): ReactElement {
         </div>
       </div>
       <div className="ui divider" />
-      <button onClick={props.showList} className="ui red button">Back</button>
+      <Link to="/projects" className="ui red button">Back</Link>
     </>
   )
 }

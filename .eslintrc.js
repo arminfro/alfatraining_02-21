@@ -23,6 +23,7 @@ module.exports = {
     "@typescript-eslint"
   ],
   "rules": {
+    "no-debugger": "off",
     "no-unused-vars": ['warn'], // instead of default error
     'indent': ['warn', 2], // instead of default 4
     "@typescript-eslint/ban-ts-comment": "off"
