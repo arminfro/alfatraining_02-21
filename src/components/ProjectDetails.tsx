@@ -4,6 +4,7 @@ import axios, {AxiosResponse} from 'axios';
 import Project from '../types/Project'
 import ProjectProgress from './ProjectProgress';
 import ProjectTimes from './ProjectTimes';
+import {useProjectApi} from '../shared/ProjectApi';
 
 interface Props {
   project: Project
@@ -11,15 +12,7 @@ interface Props {
 }
 
 export default function ProjectDetails(props: Props): ReactElement {
-  const [project, setProject] = useState<Project>()
-
-  useEffect(() => {
-    axios({
-      method: 'get',
-      url: `http://localhost:3001/projects/${props.project.id}`
-    })
-      .then((response: AxiosResponse<Project>) => setProject(response.data))
-  }, [props.project.id])
+  const [project] = useProjectApi<Project>('get', `projects/${props.project.id}`)
 
   if (!project) {return <p>Lade</p>}
 

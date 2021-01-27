@@ -1,5 +1,6 @@
 import axios, {AxiosResponse} from 'axios';
 import React, {ReactElement, useEffect, useState} from 'react';
+import {useProjectApi} from '../shared/ProjectApi';
 
 import Project from '../types/Project';
 import ProjectListItem from './ProjectListItem'
@@ -9,15 +10,7 @@ interface Props {
 }
 
 export default function ProjectList(props: Props): ReactElement {
-  const [projects, setBooks] = useState<Project[]>()
-
-  useEffect(() => {
-    axios({
-      method: 'get',
-      url: 'http://localhost:3001/projects'
-    })
-      .then((response: AxiosResponse<Project[]>) => setBooks(response.data))
-  }, [])
+  const [projects] = useProjectApi<Project[]>('get', 'projects')
 
   return projects
     ? (

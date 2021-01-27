@@ -1,6 +1,6 @@
 import {useEffect} from 'react'
 
-export default function useInterval(callback: () => void) {
+export default function useInterval(callback: () => void): void {
   useEffect(() => {
     console.log('EffectFunction useInterval')
     const intervalId = window.setInterval(callback, 1000)
