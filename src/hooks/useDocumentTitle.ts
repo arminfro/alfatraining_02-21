@@ -9,4 +9,3 @@ export default function useDocumentTitle(newDocTitle: string): void {
     }
   }, [newDocTitle])
 }
-

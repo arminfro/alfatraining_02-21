@@ -1,10 +1,8 @@
-import React, {Fragment, ReactElement, useEffect, useState} from 'react';
-import axios, {AxiosResponse} from 'axios';
-
-import Project from '../types/Project'
+import React, {ReactElement} from 'react';
+import {useProjectApi} from '../shared/ProjectApi';
+import Project from '../types/Project';
 import ProjectProgress from './ProjectProgress';
 import ProjectTimes from './ProjectTimes';
-import {useProjectApi} from '../shared/ProjectApi';
 
 interface Props {
   project: Project

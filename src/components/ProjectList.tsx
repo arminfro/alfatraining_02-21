@@ -1,9 +1,7 @@
-import axios, {AxiosResponse} from 'axios';
-import React, {ReactElement, useEffect, useState} from 'react';
+import React, {ReactElement} from 'react';
 import {useProjectApi} from '../shared/ProjectApi';
-
 import Project from '../types/Project';
-import ProjectListItem from './ProjectListItem'
+import ProjectListItem from './ProjectListItem';
 
 interface Props {
   showDetails: (project: Project) => void
