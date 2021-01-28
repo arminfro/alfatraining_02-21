@@ -3,6 +3,7 @@ import {Redirect, Route, Switch} from "react-router-dom"
 import ClassCounter from "./ClassCounter"
 import FunctionalCounter from "./FunctionalCounter"
 import ProjectDetails from "./ProjectDetails"
+import ProjectForm from "./ProjectForm"
 import ProjectList from "./ProjectList"
 
 export default function Routing(): ReactElement {
@@ -13,6 +14,9 @@ export default function Routing(): ReactElement {
       </Route>
       <Route path="/class-counter">
         <ClassCounter />
+      </Route>
+      <Route path="/projects/new">
+        <ProjectForm />
       </Route>
       <Route path="/projects/:id">
         <ProjectDetails />
