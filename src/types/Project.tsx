@@ -18,7 +18,7 @@ export type Status = 'is-completed' | 'in-progress' | 'on-hold'
 export function isProject(data: Project): data is Project {
   return data instanceof Object
         && (['id', 'img', 'title', 'status', 'progress'] as Array<keyof Project>)
-          .every(attribute => (data as Project)[attribute])
+          .every(attribute => (data)[attribute])
 }
 
 export function isProjectArray(data: Project[]): data is Project[] {
