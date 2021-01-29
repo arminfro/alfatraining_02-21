@@ -49,6 +49,7 @@ export default function ProjectDetails(): ReactElement {
       </div>
       <div className="ui divider" />
       <Link to="/projects" className="ui red button">Back</Link>
+      <Link to={`/projects/edit/${project.id}`} className="ui yellow button">Edit</Link>
     </>
   )
 }

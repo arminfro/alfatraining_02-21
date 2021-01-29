@@ -3,8 +3,10 @@ import {Redirect, Route, Switch} from "react-router-dom"
 import ClassCounter from "./ClassCounter"
 import FunctionalCounter from "./FunctionalCounter"
 import ProjectDetails from "./ProjectDetails"
-import ProjectForm from "./ProjectForm"
+import ProjectCreate from "./ProjectCreate"
 import ProjectList from "./ProjectList"
+import ProjectEdit from './ProjectEdit'
+import Home from "./Home"
 
 export default function Routing(): ReactElement {
   return (
@@ -16,7 +18,10 @@ export default function Routing(): ReactElement {
         <ClassCounter />
       </Route>
       <Route path="/projects/new">
-        <ProjectForm />
+        <ProjectCreate />
+      </Route>
+      <Route path="/projects/edit/:id">
+        <ProjectEdit />
       </Route>
       <Route path="/projects/:id">
         <ProjectDetails />
@@ -25,7 +30,7 @@ export default function Routing(): ReactElement {
         <ProjectList />
       </Route>
       <Route path="/home">
-        <p>Home!</p>
+        <Home />
       </Route>
       <Route path="/">
         <Redirect to="/home" />

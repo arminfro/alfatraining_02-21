@@ -3,16 +3,35 @@ import {useHistory} from "react-router-dom"
 import {projectApi} from "../shared/ProjectApi"
 import {Status} from "../types/Project"
 
-export default function ProjectForm(): ReactElement {
+import css from './ProjectForm.module.css'
+
+interface FormTimes {
+  title?: string
+  begin: string
+  end: string
+}
+
+interface Props {
+  title: string
+  image: string
+  status: Status
+  progress: number
+  times: FormTimes[]
+  isEdit: boolean
+  id?: number
+}
+
+export default function ProjectForm(props: Props): ReactElement {
+  console.log(css)
   const buildTime = () => {
     return {title: '', begin: '', end: ''}
   }
   const history = useHistory()
-  const [title, setTitle] = useState('')
-  const [image, setImage] = useState('')
-  const [status, setStatus] = useState<Status>('on-hold')
-  const [progress, setProgress] = useState(0)
-  const [times, setTimes] = useState([buildTime()])
+  const [title, setTitle] = useState(props.title)
+  const [image, setImage] = useState(props.image)
+  const [status, setStatus] = useState<Status>(props.status)
+  const [progress, setProgress] = useState(props.progress)
+  const [times, setTimes] = useState(props.times)
 
   const onChangeProgress = (changeValue: number) => {
     setProgress(currentProgress => {
@@ -59,23 +78,30 @@ export default function ProjectForm(): ReactElement {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault() // prevent reload
-    projectApi('post', 'projects', () => {history.push('/projects')}, project())
+    projectApi(
+      props.isEdit ? 'put' : 'post',
+      props.isEdit ? `projects/${props.id}` : 'projects',
+      () => {
+        history.push(props.isEdit ? `/projects/${props.id}` : '/projects')
+      },
+      project()
+    )
   }
 
   return (
-    <form onSubmit={onSubmit} className="ui form">
-      <h4 className="ui dividing header">Project Create</h4>
+    <form onSubmit={onSubmit} className={`ui form ${css.projectForm}`}>
+      <h4 className="ui dividing header">Project {props.isEdit ? 'Edit' : 'Create'}</h4>
       <div className="field">
         <div className="field">
           <label>Titel</label>
           <div className="field">
-            <input value={title} onChange={e => setTitle(e.target.value)} type="text" placeholder="Titel" />
+            <input required minLength={3} value={title} onChange={e => setTitle(e.target.value)} type="text" placeholder="Titel" />
           </div>
         </div>
         <div className="field">
           <label>Image</label>
           <div className="field">
-            <input value={image} onChange={e => setImage(e.target.value)} type="text" placeholder="Image Url" />
+            <input required pattern="[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?" value={image} onChange={e => setImage(e.target.value)} type="text" placeholder="Image Url" />
           </div>
         </div>
         <div className="field">
@@ -109,11 +135,11 @@ export default function ProjectForm(): ReactElement {
             </div>
             <div className="four wide field">
               <label>Begin</label>
-              <input value={time.begin} onChange={e => onChangeTimes(index, 'begin', e.target.value)} type="date" placeholder="Begin" />
+              <input required value={time.begin} onChange={e => onChangeTimes(index, 'begin', e.target.value)} type="date" placeholder="Begin" />
             </div>
             <div className="four wide field">
               <label>End</label>
-              <input value={time.end} onChange={e => onChangeTimes(index, 'end', e.target.value)} type="date" placeholder="End" />
+              <input required value={time.end} onChange={e => onChangeTimes(index, 'end', e.target.value)} type="date" placeholder="End" />
             </div>
           </div>
         )}
