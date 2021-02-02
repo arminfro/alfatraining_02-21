@@ -1,4 +1,5 @@
-import Project from "./types/Project";
+import React, {Dispatch, createContext, ReactElement, useReducer, useContext} from 'react'
+import Project from "../types/Project";
 
 interface Store {
   favorites: Project[]
@@ -36,4 +37,24 @@ export function reducer(store: Store, action: Actions): Store {
     }
   }
   }
+}
+
+interface ContextProps {
+  store: Store
+  dispatch: Dispatch<Actions>
+}
+
+export const StoreContext = createContext({} as ContextProps)
+
+export function useStore(): ContextProps {
+  return useContext(StoreContext)
+}
+
+export function StoreProvider(props: {children: ReactElement}): ReactElement {
+  const [store, dispatch] = useReducer(reducer, initialStore)
+  return (
+    <StoreContext.Provider value={{store, dispatch}}>
+      {props.children}
+    </StoreContext.Provider>
+  )
 }

@@ -1,17 +1,14 @@
-import React, {ReactElement, useReducer} from "react"
+import React, {ReactElement} from "react"
 import {Redirect, Route, Switch} from "react-router-dom"
 import ClassCounter from "./ClassCounter"
 import FunctionalCounter from "./FunctionalCounter"
-import ProjectDetails from "./ProjectDetails"
-import ProjectCreate from "./ProjectCreate"
-import ProjectList from "./ProjectList"
-import ProjectEdit from './ProjectEdit'
 import Home from "./Home"
-import {initialStore, reducer} from "../Store"
+import ProjectCreate from "./ProjectCreate"
+import ProjectDetails from "./ProjectDetails"
+import ProjectEdit from './ProjectEdit'
+import ProjectList from "./ProjectList"
 
 export default function Routing(): ReactElement {
-  const [store, dispatch] = useReducer(reducer, initialStore)
-  console.log('store', store)
   return (
     <Switch>
       <Route path="/functional-counter">
@@ -27,7 +24,7 @@ export default function Routing(): ReactElement {
         <ProjectEdit />
       </Route>
       <Route path="/projects/:id">
-        <ProjectDetails dispatch={dispatch} favorites={store.favorites} />
+        <ProjectDetails />
       </Route>
       <Route path="/projects">
         <ProjectList />
